@@ -163,20 +163,38 @@ var START='2026-10-27T00:00:00'; // с этого момента заполня�
 <script>
 // ===== СЧЁТЧИК ОНЛАЙНА (Firebase Realtime Database) =====
 // Вставь сюда databaseURL своей базы. Пока там заглушка, показывается 1 (только ты).
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
 var FIREBASE_CONFIG={databaseURL:'https://spokoen-site.europe-west1.firebasedatabase.app'};
 (function(){
   var txt=document.getElementById('onlText'),box=document.getElementById('online');
   function plural(n){var a=n%10,b=n%100;return(a==1&&b!=11)?'человек':(a>=2&&a<=4&&(b<10||b>=20))?'человека':'человек'}
   function setCount(n){txt.textContent=n;box.setAttribute('data-tip','Сейчас на сайте: '+n+' '+plural(n))}
-  if(!txt||!window.firebase||/ВАШ-ПРОЕКТ/.test(FIREBASE_CONFIG.databaseURL))return;
+  
+  // Убрали проверку на "ВАШ-ПРОЕКТ", теперь скрипт запускается всегда
+  if(!txt||!window.firebase) return; 
+
   try{
     firebase.initializeApp(FIREBASE_CONFIG);
-    var db=firebase.database(),list=db.ref('online'),me=list.push();
-    db.ref('.info/connected').on('value',function(s){
-      if(s.val()===true){me.onDisconnect().remove().then(function(){me.set(firebase.database.ServerValue.TIMESTAMP)})}
+    var db=firebase.database(), list=db.ref('online'), me=list.push();
+    
+    db.ref('.info/connected').on('value', function(s){
+      if(s.val() === true){
+        // Правильный вызов для современных версий Firebase
+        me.onDisconnect().remove().then(function(){
+          me.set(firebase.database.ServerValue.TIMESTAMP);
+        });
+      }
     });
-    list.on('value',function(s){setCount(Math.max(1,s.numChildren()))});
-  }catch(e){}
+    
+    list.on('value', function(s){
+      setCount(Math.max(1, s.numChildren()));
+    });
+    
+  } catch(e){
+    console.error("Ошибка Firebase:", e);
+  }
 })();
 </script>
 </body></html>
