@@ -138,7 +138,7 @@ document.documentElement.classList.add('js');
 })();
 </script><script>
 // ДАТА ВЫХОДА РОЛИКА: год-месяц-день T часы:минуты (время устройства зрителя)
-var RELEASE='2026-11-03T20:00:00+03:00';
+var RELEASE='2026-11-05T20:00:00+03:00';
 var START='2026-10-27T00:00:00'; // с этого момента заполняется полоска внизу
 (function(){
   var root=document.getElementById('cd'),target=new Date(RELEASE).getTime(),start=new Date(START).getTime(),bar=document.getElementById('cdbar');
@@ -147,7 +147,7 @@ var START='2026-10-27T00:00:00'; // с этого момента заполня�
   function set(u,v){var b=boxes[u].firstChild;if(b.textContent!==v){b.textContent=v;var p=boxes[u];p.classList.remove('tick');void p.offsetWidth;p.classList.add('tick')}}
   var sub=document.getElementById('cdsub');
   if(sub&&!isNaN(target)){
-    sub.textContent='Премьера 3 ноября в 20:00';
+    sub.textContent='Премьера 5 ноября в 20:00';
   }
   function upd(){
     var t=target-Date.now();
