@@ -99,41 +99,57 @@ a.mail:hover{background-size:100% 1px}
 .online{display:inline-flex;align-items:center;vertical-align:middle;gap:6px;margin-left:12px;color:var(--muted);font-size:.95rem;font-variant-numeric:tabular-nums}
 .online svg{display:block}
 
-/* ===== Увеличенный размер ===== */
-.wrap{max-width:1100px;padding:0 28px}
-.wrap>section:first-child{margin-top:48px}
-section{margin-bottom:72px}
-h2{font-size:2.2rem;margin:0 0 26px}
-p{font-size:1.25rem;line-height:1.7;margin:0 0 16px}
-ul{font-size:1.25rem;line-height:1.8;padding-left:28px}
-.badge{font-size:1.2rem;padding:10px 26px;margin-bottom:20px}
-.video .b{padding:26px 30px}
-.video h3{font-size:2rem;margin:0 0 8px}
-.video p{font-size:1.25rem}
-.cd-row{padding:clamp(18px,4vw,40px) clamp(18px,5vw,56px);gap:clamp(6px,2vw,22px);border-radius:10px}
-.cd-box{min-width:clamp(56px,12vw,120px)}
-.cd-box b{font-size:clamp(2.4rem,10vw,5.6rem)}
-.cd-box small{font-size:clamp(.8rem,2vw,1.15rem);margin-top:12px}
-.cd-sep{font-size:clamp(2rem,8vw,4.4rem)}
-.cd-bar{height:12px}
-.cd-watch{font-size:1.4rem;padding:16px 32px}
-.links{gap:16px}
-.links a{padding:26px 32px;font-size:1.5rem;border-radius:16px}
-.links a>span:last-child{font-size:1.2rem}
-.box{padding:36px 40px;border-radius:18px}
-.box h3{font-size:1.6rem;margin:20px 0 12px}
-a.mail{font-size:1.25rem}
-footer{font-size:1.4rem;padding:40px 0 48px}
-.online{font-size:1.3rem;gap:10px}
-.online svg{width:28px;height:28px}
-@media(max-width:560px){
- .wrap{padding:0 16px}
- h2{font-size:1.7rem}
- p,ul{font-size:1.05rem}
- .links a{padding:18px;font-size:1.15rem}
- .links a>span:last-child{font-size:.95rem}
- .box{padding:22px}
- footer{font-size:1.1rem}
+/* ===== Адаптивность (телефон / планшет / ПК) ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{overflow-x:hidden;overflow-wrap:break-word;word-wrap:break-word}
+img{max-width:100%;height:auto}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left)) 0 max(20px,env(safe-area-inset-right))}
+.wrap>section:first-child{margin-top:clamp(20px,5vw,44px)}
+section{margin-bottom:clamp(36px,7vw,60px);min-width:0}
+h2{font-size:clamp(1.4rem,4.5vw,1.85rem);margin:0 0 clamp(14px,3vw,22px)}
+p{font-size:clamp(1rem,2.6vw,1.1rem);line-height:1.65;margin:0 0 14px}
+ul{font-size:clamp(1rem,2.6vw,1.1rem);line-height:1.7;padding-left:24px}
+.badge{font-size:clamp(.8rem,2.4vw,1rem);padding:7px clamp(14px,3vw,22px);margin-bottom:14px}
+.video{max-width:100%}
+.video .b{padding:clamp(14px,3.5vw,24px) clamp(16px,4vw,26px)}
+.video h3{font-size:clamp(1.2rem,4vw,1.65rem);margin:0 0 6px;line-height:1.25}
+.video p{font-size:clamp(.95rem,2.5vw,1.1rem)}
+
+/* таймер */
+.cd{padding:clamp(6px,2vw,16px)}
+.cd-row{max-width:100%;padding:clamp(10px,2.8vw,30px) clamp(10px,3.6vw,44px);gap:clamp(3px,1.4vw,16px);border-radius:9px}
+.cd-box{min-width:0;flex:0 1 auto;width:clamp(40px,10.5vw,100px)}
+.cd-box b{font-size:clamp(1.35rem,6.6vw,4.4rem)}
+.cd-box small{font-size:clamp(.55rem,1.7vw,.95rem);margin-top:clamp(4px,1vw,10px)}
+.cd-sep{font-size:clamp(1.1rem,5vw,3.4rem)}
+.cd-bar{height:clamp(6px,1.4vw,10px)}
+.cd-watch{font-size:clamp(.95rem,3vw,1.2rem);padding:clamp(10px,2.4vw,13px) clamp(18px,4vw,26px)}
+
+/* ссылки */
+.links{gap:clamp(10px,2vw,14px)}
+.links a{padding:clamp(14px,3.2vw,21px) clamp(16px,3.6vw,26px);font-size:clamp(1.05rem,3.2vw,1.25rem);border-radius:14px;min-width:0}
+.links a>span:last-child{font-size:clamp(.82rem,2.4vw,1.05rem);min-width:0;overflow-wrap:anywhere}
+
+/* сотрудничество */
+.box{padding:clamp(18px,4vw,32px) clamp(18px,4.2vw,34px);border-radius:16px}
+.box h3{font-size:clamp(1.1rem,3.4vw,1.35rem);margin:18px 0 10px}
+a.mail{font-size:inherit;overflow-wrap:anywhere}
+
+/* футер */
+footer{font-size:clamp(.85rem,2.8vw,1.15rem);padding:clamp(22px,5vw,34px) 0 calc(clamp(24px,5vw,40px) + env(safe-area-inset-bottom,0px));line-height:1.6}
+.online{font-size:inherit;gap:8px;margin-left:10px;white-space:nowrap}
+.online svg{width:1.3em;height:1.3em}
+
+/* узкие телефоны: ссылки в столбик */
+@media(max-width:420px){
+ .links a{flex-direction:column;align-items:flex-start;gap:4px}
+ .links a>span:last-child{text-align:left}
+ .online{display:flex;justify-content:center;margin:8px 0 0}
+}
+/* отключить hover-сдвиги на тач-устройствах, чтобы ничего не выпирало */
+@media(hover:none){
+ .links a:hover{transform:none}
+ .video:hover,.box:hover{transform:none}
 }
 </style></head><body><div class="wrap">
 <section><span class="badge">СКОРО НА КАНАЛЕ</span>
